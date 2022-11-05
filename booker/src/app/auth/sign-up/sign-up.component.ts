@@ -1,4 +1,9 @@
+import { CreateUserInput } from './../../../generated-types';
+import { LoginService } from './../login/login.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { CreateUserGQL } from 'src/generated-types';
+import { concatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,14 +12,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly createUserGql: CreateUserGQL,
+    private router: Router,
+    private loginService: LoginService
+    ) { }
 
   ngOnInit(): void {
   }
 
-  signUp({ email, password } : any) {
-    console.log(email, password);
-
+  signUp(createUserInput: CreateUserInput) {
+    this.createUserGql.mutate({ createUserInput: createUserInput })
+    .pipe(
+      concatMap(() => {
+        return this.loginService.login(createUserInput);
+      })
+    )
+    .subscribe(() => {
+      this.router.navigate(['/']);
+    })
   }
 
 }

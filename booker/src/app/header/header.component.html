@@ -2,4 +2,18 @@
   <a routerLink="/">
     <h1>Booker</h1>
   </a>
+  <ul class="nav">
+    <li>
+      {{ isLoggedIn$ | async }}
+      <div *ngIf="(isLoggedIn$ | async) === true; else login">
+        <a (click)="onLogout()">Logout</a>
+      </div>
+      <ng-template #login>
+        <a routerLink="/login">Login</a>
+      </ng-template>
+    </li>
+    <li *ngIf="(isLoggedIn$ | async) !== true">
+      <a routerLink="/signup">Sign Up</a>
+    </li>
+  </ul>
 </mat-toolbar>
