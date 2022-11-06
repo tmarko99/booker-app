@@ -1,3 +1,4 @@
+import { BookmarkModule } from './bookmarks/bookmark/bookmark.module';
 import { SignUpModule } from './auth/sign-up/sign-up.module';
 import { LoginModule } from './auth/login/login.module';
 import { HeaderModule } from './header/header.module';
@@ -25,7 +26,8 @@ import { HomeModule } from './home/home.module';
     HeaderModule,
     LoginModule,
     SignUpModule,
-    HomeModule
+    HomeModule,
+    BookmarkModule
   ],
   providers: [
     {

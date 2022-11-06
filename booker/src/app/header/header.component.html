@@ -4,7 +4,6 @@
   </a>
   <ul class="nav">
     <li>
-      {{ isLoggedIn$ | async }}
       <div *ngIf="(isLoggedIn$ | async) === true; else login">
         <a (click)="onLogout()">Logout</a>
       </div>
@@ -17,3 +16,4 @@
     </li>
   </ul>
 </mat-toolbar>
+{{ isLoggedIn$ | async | json }}

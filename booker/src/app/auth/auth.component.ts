@@ -13,7 +13,7 @@ export class AuthComponent implements OnInit {
 
   @Output()
   onSubmitEvent = new EventEmitter<any>();
-  email = new FormControl('', [Validators.required]);
+  email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
 
   constructor() { }

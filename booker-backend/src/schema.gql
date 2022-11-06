@@ -7,15 +7,48 @@ type User {
   email: String!
 }
 
+type Bookmark {
+  _id: String!
+  name: String!
+  userId: String!
+  links: [String!]!
+}
+
+type Link {
+  title: String!
+  siteName: String!
+  url: String!
+  images: [String!]!
+}
+
 type Query {
   user(_id: String!): User!
+  bookmarks: [Bookmark!]!
+  bookmark(_id: String!): Bookmark!
+  links(urls: [String!]!): [Link!]!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
+  createBookmark(createBookmarkInput: CreateBookmarkInput!): Bookmark!
+  updateBookmark(updateBookmarkInput: UpdateBookmarkInput!): Bookmark!
+  deleteBookmark(deleteBookmarkInput: DeleteBookmarkInput!): Bookmark!
 }
 
 input CreateUserInput {
   email: String!
   password: String!
+}
+
+input CreateBookmarkInput {
+  name: String!
+}
+
+input UpdateBookmarkInput {
+  _id: String!
+  links: [String!]!
+}
+
+input DeleteBookmarkInput {
+  _id: String!
 }

@@ -1,0 +1,7 @@
+mutation createBookmark($createBookmarkInput: CreateBookmarkInput!){
+  createBookmark(createBookmarkInput: $createBookmarkInput) {
+    _id
+    name
+    userId
+  }
+}
